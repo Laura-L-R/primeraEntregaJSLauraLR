@@ -100,25 +100,25 @@ alert("El total de su compra es $"+total)
 
 let confirmarEntradas = confirm("¿Desea recibir sus e-tickets al mail?")
 
-const entradasFisicaDigital = (confirmarEntradas) => {
-    switch (confirmarEntradas) {
-        case confirmarEntradas = false:
-            alert ("Puede imprimirlas desde esta página, o acercarse con su DNI a boletería el día de la función")                 
-            break;
-        default:
-            alert ("Enviaremos sus entradas al mail") 
-            break;
+const entradasFisicaDigital = (confirmarEntradas) => {   
+    if (!confirmarEntradas) {
+        alert("Puede imprimirlas desde esta página, o acercarse con su DNI a boletería el día de la función")
+      } else {
+        alert("Enviaremos sus entradas al mail")
+      }
     }
-
-return confirmarEntradas
-}
 
 const enviarAlMail = () => {
     let email = " "
     let confirmarEmail = " "
     let preguntarDeNuevo = true
-    let adquisiciónEntradas = entradasFisicaDigital(confirmarEntradas)
+    entradasFisicaDigital(confirmarEntradas);
 
+  if (!confirmarEntradas) {
+    alert("¡Muchas gracias por tu compra! \nGracias por elegir a Animal Teatro");
+    return;
+  }
+   
     do{
         email = prompt("Ingrese su email: ")
         confirmarEmail = prompt("Confirme su email: ")
@@ -134,4 +134,6 @@ const enviarAlMail = () => {
 
 const entradasEnviadas = enviarAlMail ()
 
-alert ("¡Muchas gracias por tu compra! \nGracias por elegir a Animal Teatro")
+if (confirmarEntradas) {
+    alert("¡Muchas gracias por tu compra! \nGracias por elegir a Animal Teatro");
+  }
