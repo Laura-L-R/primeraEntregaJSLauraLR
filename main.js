@@ -30,7 +30,7 @@ const comprarEntradas = () => {
 
         precioBruto += precio * cantidadConfirmada
 
-        seguirComprando = confirm("¿Querés ver otra obra")
+        seguirComprando = confirm("¿Querés ver otra obra?")
     } while (seguirComprando)
 
     return precioBruto 
@@ -60,23 +60,29 @@ const valorDescuentos = () => {
     let descuentos = 0
     let valorBrutoEntradas = compraBruta
     
-    tipoDescuento = prompt ("¿Tenés algún descuento? \nEstudiante \nJubilado").toUpperCase()
+    tipoDescuento = prompt ("¿Tenés algún descuento? \nEstudiante \nJubilado/a \nNinguno").toUpperCase()
               
         switch (tipoDescuento) {
             case "ESTUDIANTE":
-                descuentos = valorBrutoEntradas*0.20                
+                descuentos = valorBrutoEntradas*0.20
+                alert("Por ser estudiante, tenés un 20% sobre el precio de las entradas. No incluye el costo de servicio")             
                 break
             case "JUBILADO":
                 descuentos = valorBrutoEntradas*0.40
-                break
+                alert("Por ser jubilado, tenés un 40% sobre el precio de las entradas. No incluye el costo de servicio")
+                break          
             case "JUBILADA":
-                descuentos = valorBrutoEntradas*0.40
+                descuentos = valorBrutoEntradas*0.40                
+                alert("Por ser jubilada, tenés un 40% sobre el precio de las entradas. No incluye el costo de servicio")
                 break            
+            case "NINGUNO":
+                descuentos = 0
+                alert("Perfecto, continuamos con la compra")
+                break
             default:
                 alert("¡Aún no tenemos descuento para eso!")
                 descuentos = 0
         }
-        
         return descuentos
 }
 
@@ -92,12 +98,26 @@ const total = totalEntradas (compraBruta, costoServicio, incluirDescuentos)
 console.log(total)
 alert("El total de su compra es $"+total)
 
-confirm("¿Desea recibir sus e-tickets al mail?")
+let confirmarEntradas = confirm("¿Desea recibir sus e-tickets al mail?")
+
+const entradasFisicaDigital = (confirmarEntradas) => {
+    switch (confirmarEntradas) {
+        case confirmarEntradas = false:
+            alert ("Puede imprimirlas desde esta página, o acercarse con su DNI a boletería el día de la función")                 
+            break;
+        default:
+            alert ("Enviaremos sus entradas al mail") 
+            break;
+    }
+
+return confirmarEntradas
+}
 
 const enviarAlMail = () => {
     let email = " "
     let confirmarEmail = " "
     let preguntarDeNuevo = true
+    let adquisiciónEntradas = entradasFisicaDigital(confirmarEntradas)
 
     do{
         email = prompt("Ingrese su email: ")
@@ -114,4 +134,4 @@ const enviarAlMail = () => {
 
 const entradasEnviadas = enviarAlMail ()
 
-// AGREGAR OPCION NINGUN DESCUENTO (REVISAR ESO QUE NO FUNCIONA)
+alert ("¡Muchas gracias por tu compra! \nGracias por elegir a Animal Teatro")
